@@ -5,12 +5,50 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Lit + TS</title>
-    <link rel="stylesheet" href="./src/index.css" />
+    <!--<link rel="stylesheet" href="./src/index.css" />-->
     <!--<script type="module" src="/src/my-element.ts"></script>-->
     <script type="module" src="/src/components.ts"></script>
   </head>
   <body>
-    <sl-button >B <sl-icon name="emoji-laughing"></sl-icon> </sl-button>
+
+    <style>
+      nav {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 1rem 2rem;
+        color: white;
+      }
+      .site-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      .nav-links sl-button {
+        margin-left: 1rem;
+      }
+    </style>
+    <nav>
+      <div class="site-name">Quadromagico</div>
+      <div class="nav-links">
+<!--        <sl-button href="home.html" variant="text">Generate</sl-button>
+        <sl-button href="about.html" variant="text">Gallery</sl-button> -->
+        
+      </div>
+    </nav>
+
+<sl-tab-group>
+  <sl-tab slot="nav" panel="generate">Generate</sl-tab>
+  <sl-tab slot="nav" panel="gallery">Gallery</sl-tab>
+
+  <sl-tab-panel name="generate">This is the general tab panel.</sl-tab-panel>
+  <sl-tab-panel name="gallery">This is the custom tab panel.</sl-tab-panel>
+</sl-tab-group>
+
+
+    <!--<sl-button outline>B 
+    <sl-icon name="emoji-laughing"></sl-icon> </sl-button>-->
+
+
     
   </body>
 </html>
