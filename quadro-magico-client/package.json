@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@shoelace-style/shoelace": "^2.20.1",
+    "impera-js": "^0.7.8",
     "lit": "^3.3.0"
   },
   "devDependencies": {

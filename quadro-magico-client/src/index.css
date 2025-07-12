@@ -1,38 +1,44 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+sl-icon{
+  font-size: 1rem;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+/* Nav bar*/
+nav {
+  width: 100%;
+  color: white;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  position: fixed;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.top-margin
+{
+  width: 100%;
+  height: 7rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+.site-name {
+  font-size: 2rem;
+  font-weight: bold;
+  flex-grow: 3;
 }
+.center{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-grow: 1;
+
+}
+.filler{
+  flex-grow: 3;
+}
+

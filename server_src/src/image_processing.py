@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
+import traceback
 
 def crop_and_resize(img:Image.Image, output_size=(480,800)):
     target_width, target_height = output_size
@@ -79,3 +80,33 @@ def process_image(img:Image.Image, title="")->Image.Image:
     img = img.rotate(-90, expand=True) 
     
     return img
+
+
+def create_thumbnail_from_file(file_path:str)->Image.Image:
+    image = Image.open(file_path).convert('RGB')
+    image.thumbnail((128,128))
+    return image
+
+def create_image_from_bytes(file)->Image.Image:
+    image = Image.open(file).convert('RGB')
+    image.thumbnail((800,800))  # the max that the inky can do is 800 px, so resize here to save space
+    return image
+
+def display_image(img_path:str, title:str, display_obj):
+    display_obj['is_displaying'] = True
+    try:
+        img = Image.open(img_path).convert('RGB')
+        img = process_image(img, title)
+
+        import time
+        time.sleep(10)
+
+        display_obj['is_displaying'] = False
+        display_obj['display_error'] = ""
+    except Exception as e:
+        display_obj['display_error'] = str(e)
+        display_obj['is_displaying'] = False
+        traceback.print_exc()
+    
+    
+    
