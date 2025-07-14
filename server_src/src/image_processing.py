@@ -1,6 +1,10 @@
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import traceback
+from inky.inky_ac073tc1a import Inky
+
+
+inky = Inky()
 
 def crop_and_resize(img:Image.Image, output_size=(480,800)):
     target_width, target_height = output_size
@@ -97,12 +101,11 @@ def display_image(img_path:str, title:str, display_obj):
     try:
         img = Image.open(img_path).convert('RGB')
         img = process_image(img, title)
-
-        import time
-        time.sleep(10)
-
+        inky.set_image(img, saturation=0.5)
+        inky.show()
         display_obj['is_displaying'] = False
         display_obj['display_error'] = ""
+
     except Exception as e:
         display_obj['display_error'] = str(e)
         display_obj['is_displaying'] = False

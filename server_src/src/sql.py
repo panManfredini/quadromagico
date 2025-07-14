@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+from typing import Dict, List
 
 DB_PATH = "/home/pan/Documents/quadromagico/quadromagico.db"
 
@@ -25,3 +26,16 @@ def insert_image_sql_record(created_at:datetime, thumbnail_path:str, image_path:
         cursor = conn.cursor()    
         cursor.execute("INSERT INTO images (created_at, thumbnail_path, image_path, title, prompt) VALUES (?,?,?,?,?)",
                                        (dt,         thumbnail_path, image_path, title, prompt))    
+
+
+def get_all_sql_images()->List[Dict[str,any]]:
+    query = """
+        SELECT * FROM images
+    """
+    with sqlite3.connect(DB_PATH) as conn:
+        cursor = conn.cursor()    
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        columns = [description[0] for description in cursor.description]
+    
+    return [dict(zip(columns, row)) for row in rows]

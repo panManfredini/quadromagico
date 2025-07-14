@@ -3,7 +3,7 @@ import os
 import datetime
 import uuid
 from image_processing import create_thumbnail_from_file, display_image, create_image_from_bytes
-from sql import insert_image_sql_record
+from sql import insert_image_sql_record, get_all_sql_images
 from threading import Thread
 import time
 
@@ -111,7 +111,14 @@ def is_displaying():
     else:
         return jsonify({'is_display':False, 'error': f"Image display error: {DISPLAY_OBJ['display_error']}"})
 
-
+@app.route('/api/images', methods=['GET'])
+def get_images():
+    try:
+        img_list = get_all_sql_images()
+        return jsonify({'success': 'ok', 'images': img_list })
+    except Exception as e:
+        return jsonify({'error': f'{e}'}), 500
+    
 
         
 if __name__ == '__main__':
