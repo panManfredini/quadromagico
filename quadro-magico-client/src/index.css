@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body, :host, *{
+  font-family:  VT323, monospace;
+  font-size: 1.2rem;
+}
+:root {
+  --sl-font-mono:   VT323, monospace !important;
+  --sl-font-sans:   VT323, monospace !important;
+  --sl-font-serif:  VT323, monospace !important;
+}
+
+sl-switch {
+  --sl-color-primary-600:  hsl(157.8 66.8% 48.9%);
+}
+
+sl-input {
+  --sl-color-primary-600:  hsl(157.8 66.8% 48.9%);
+  --sl-input-background-color : transparent;
+  --sl-input-border-color-focus:  hsl(157.8 66.8% 48.9%);
+  --sl-input-focus-ring-color: transparent;
+  /*--sl-input-color-focus: hsl(157.8 66.8% 48.9%);*/
+}
+
 
 
 sl-icon{
@@ -8,6 +32,8 @@ sl-icon{
 nav {
   width: 100%;
   color: white;
+  background-color: hsl(240, 5.9%, 11%);
+  box-shadow: 0px 20px 20px hsl(240, 5.9%, 11%);
   position: fixed;
   z-index: 1000;
   top: 0;

@@ -5,8 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/image.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quadromagico</title>
-    <link rel="stylesheet" type="text/css" href="/src/index.css">
     <script type="module" src="/src/main.ts"></script>
+    <link rel="stylesheet" type="text/css" href="/src/index.css">
+
   </head>
   <body>
 
@@ -14,9 +15,9 @@
     <!--<div class="site-name">Quadromagico</div>-->
     <div class="filler"></div>
     <div class="center">
-      <round-button id="generate">    <sl-icon name="pencil-square"></sl-icon></round-button>
-      <round-button id="upload"><sl-icon name="upload"></sl-icon></round-button>
-      <round-button id="gallery"><sl-icon name="images"></sl-icon></round-button>
+      <round-button outline id="generate">    <sl-icon name="pencil-square"></sl-icon></round-button>
+      <round-button outline id="upload"><sl-icon name="upload"></sl-icon></round-button>
+      <round-button outline id="gallery"><sl-icon name="images"></sl-icon></round-button>
     </div>
     <div class="filler"></div>
   </nav>
@@ -24,10 +25,46 @@
   <div class="top-margin"></div>
 
   <div>
-    <hiding-section name="generate">Gen</hiding-section>
-    <hiding-section name="upload" align="center"><sl-button  >Upload Image</sl-button></hiding-section>
+    <!---------------------  Generate Section ---------------------->
+    <hiding-section name="generate">
+      Generate!
+    </hiding-section>
+    <!-------------------------------------------------------------->
+    
+    <!---------------------  Upload Section ---------------------->
+    <hiding-section name="upload" >
+
+        <round-button >
+          <sl-icon name="plus-lg"></sl-icon>
+        </round-button>
+        <p> Click here to upload an image! </p>
+
+    <sl-card class="card-overview">
+        
+        <img slot="image" src="out2.jpg"/>
+        <p>
+        <b>Prompt:</b><small style="font-size:1rem;"> A nice little puppy</small>
+        </p>
+
+        <sl-switch class=".switch-color" style="margin-bottom:1rem;">Display Immediately</sl-switch> <br/>
+        <sl-input type="text" placeholder="Title..."></sl-input>
+        <div slot="footer">
+          <file-input-button>Upload Image</file-input-button>
+          <file-input-button>AI Edit</file-input-button>
+          <file-input-button>Modify Title</file-input-button>
+          <file-input-button>Display</file-input-button>
+        </div>
+      </sl-card>
+
+      
+    </hiding-section>
+    <!-------------------------------------------------------------->
+    
+    <!---------------------  Gallery Section ---------------------->
     <hiding-section name="gallery">Gallery</hiding-section>
+    <!-------------------------------------------------------------->
+    <img/>
   </div>
 
-  </body>
+</body>
 </html>

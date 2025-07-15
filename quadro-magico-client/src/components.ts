@@ -3,6 +3,7 @@ import {customElement, property} from 'lit/decorators.js';
 import {litStatesMixin} from 'impera-js'
 import { AppState } from './appState';
 
+
 @customElement('round-button')
 export class RoundButton extends LitElement {
   static styles = css`
@@ -10,18 +11,38 @@ export class RoundButton extends LitElement {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      border: 1px solid hsl(240 5% 35.5%);
-      background: transparent;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: black;
+      background: hsl(240 5.3% 58%);
+      border: 1px solid hsl(240 5.3% 58%);
     }
+    
     button:hover {
+      background: hsl(240 5.6% 73%);;
+      border: 1px solid hsl(240 5.6% 73%);
+    }
+    :host([outline]) button {
+      border: 1px solid hsl(240 5% 35.5%);
+      background: transparent;
+      color: white;
+    }
+    
+    :host([outline]) button:hover {
       border: 1px solid hsl(157.8 66.8% 48.9%);
     }
-    button:hover ::slotted(*) {
+    :host([outline]) button:hover ::slotted(*) {
         color: hsl(157.8 66.8% 48.9%);
+    }
+    
+    :host([active]) button {
+      border-color: hsl(157.8 66.8% 48.9%);
+    }
+
+    :host([active]) ::slotted(*) {
+      color: hsl(157.8 66.8% 48.9%);
     }
   `;
 
@@ -71,7 +92,8 @@ export class HidingSection extends litStatesMixin([AppState],LitElement) {
         box-sizing: border-box;
         display: flex;
         justify-content: center;
-        align-items: ${css_align};
+        flex-direction: column;
+        align-items: center;#${css_align};
         min-height: 80vh;
       }
     </style>
@@ -80,5 +102,64 @@ export class HidingSection extends litStatesMixin([AppState],LitElement) {
       <slot></slot>
     </section>
     `;
+  }
+}
+
+
+@customElement('file-input-button')
+export class FileInputButton extends LitElement {
+
+  file:File
+  file_url:string
+
+  static styles = css`
+  :host {
+    display: block;
+  }
+  button {
+    font-family: inherit;
+    font-size :inherit;
+    box-sizing: border-box;
+    border-radius: 5%;
+    border: 1px solid hsl(240 5% 35.5%);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem;
+  }
+  button:hover {
+    border: 1px solid hsl(157.8 66.8% 48.9%);
+    color:hsl(157.8 66.8% 48.9%);
+  }
+  button:hover ::slotted(*) {
+      color: hsl(157.8 66.8% 48.9%);
+  }
+  input {
+    display: none;
+  }
+  `;
+
+  render() {
+    return html`
+      <button @click=${this.load_file}>
+        <slot></slot>
+      </button>
+      <input id="inpt_file" type="file" accept="image/*" @change=${this.handle_change}/>
+    `;
+  }
+
+  
+  load_file() {
+    const input:HTMLInputElement = this.shadowRoot.querySelector('#inpt_file');
+    input.click();
+  }
+
+  handle_change()
+  {
+    const input:HTMLInputElement = this.shadowRoot.querySelector('#inpt_file');
+    this.file = input.files[0];
+    this.file_url = URL.createObjectURL(this.file);
   }
 }

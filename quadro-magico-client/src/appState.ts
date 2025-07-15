@@ -4,7 +4,8 @@ import {StateVariable} from 'impera-js'
 localStorage.clear();
 
 let DEFAULT_STATE = {
-    visible_section : "generate"
+    visible_section : "generate",
+    image_preview : ""
 }
 
 export var AppState  = new StateVariable("AppState", DEFAULT_STATE);
