@@ -23,6 +23,10 @@ sl-input {
 }
 
 
+sl-button {
+  --sl-color-primary-600:  hsl(157.8 66.8% 48.9%);
+}
+
 
 sl-icon{
   font-size: 1rem;

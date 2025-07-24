@@ -33,15 +33,21 @@
     
     <!---------------------  Upload Section ---------------------->
     <hiding-section name="upload" >
-
+      <file-input-wrapper>
         <round-button >
           <sl-icon name="plus-lg"></sl-icon>
         </round-button>
-        <p> Click here to upload an image! </p>
-
-    <sl-card class="card-overview">
-        
+      </file-input-wrapper>
+      <p> Click here to upload an image! </p>
+    
+    <sl-card class="card-overview">        
         <img slot="image" src="out2.jpg"/>
+        
+        <div style="display:flex; width:100%; align-items: flex-end;   justify-content: flex-end;">
+        <round-button small>
+          <sl-icon name="x"></sl-icon>
+        </round-button>
+      </div>
         <p>
         <b>Prompt:</b><small style="font-size:1rem;"> A nice little puppy</small>
         </p>
@@ -49,13 +55,12 @@
         <sl-switch class=".switch-color" style="margin-bottom:1rem;">Display Immediately</sl-switch> <br/>
         <sl-input type="text" placeholder="Title..."></sl-input>
         <div slot="footer">
-          <file-input-button>Upload Image</file-input-button>
-          <file-input-button>AI Edit</file-input-button>
-          <file-input-button>Modify Title</file-input-button>
-          <file-input-button>Display</file-input-button>
+          <qm-button outline>Upload Image</qm-button>
+          <qm-button outline>AI Edit</qm-button>
+          <qm-button outline>Modify Title</qm-button>
+          <qm-button >Display</qm-button>
         </div>
-      </sl-card>
-
+    </sl-card>
       
     </hiding-section>
     <!-------------------------------------------------------------->

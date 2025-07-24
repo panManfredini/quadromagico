@@ -44,6 +44,14 @@ export class RoundButton extends LitElement {
     :host([active]) ::slotted(*) {
       color: hsl(157.8 66.8% 48.9%);
     }
+
+    :host([small]) button {
+      width: 30px;
+      height: 30px;
+    }
+    :host([small]) ::slotted(*) {
+      font-size: small;
+    }
   `;
 
   render() {
@@ -106,8 +114,8 @@ export class HidingSection extends litStatesMixin([AppState],LitElement) {
 }
 
 
-@customElement('file-input-button')
-export class FileInputButton extends LitElement {
+@customElement('file-input-wrapper')
+export class FileInputWrapper extends LitElement {
 
   file:File
   file_url:string
@@ -116,41 +124,30 @@ export class FileInputButton extends LitElement {
   :host {
     display: block;
   }
-  button {
-    font-family: inherit;
-    font-size :inherit;
-    box-sizing: border-box;
-    border-radius: 5%;
-    border: 1px solid hsl(240 5% 35.5%);
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.6rem;
-  }
-  button:hover {
-    border: 1px solid hsl(157.8 66.8% 48.9%);
-    color:hsl(157.8 66.8% 48.9%);
-  }
-  button:hover ::slotted(*) {
-      color: hsl(157.8 66.8% 48.9%);
-  }
   input {
     display: none;
   }
   `;
 
+  
   render() {
     return html`
-      <button @click=${this.load_file}>
-        <slot></slot>
-      </button>
+      <slot></slot>
       <input id="inpt_file" type="file" accept="image/*" @change=${this.handle_change}/>
     `;
   }
 
-  
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('click', this.load_file);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.load_file);
+  }
+
   load_file() {
     const input:HTMLInputElement = this.shadowRoot.querySelector('#inpt_file');
     input.click();
@@ -162,4 +159,50 @@ export class FileInputButton extends LitElement {
     this.file = input.files[0];
     this.file_url = URL.createObjectURL(this.file);
   }
+}
+
+@customElement('qm-button')
+export class QMButton extends LitElement {
+  static styles = css`
+  :host {
+    display: block;
+  }
+  button {
+    font-family: inherit;
+    font-size : 1rem;
+    color: hsl(240 5.6% 73%);;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid hsl(240 5% 35.5%);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+  }
+  button:hover {
+    border: 1px solid hsl(157.8 66.8% 48.9%);
+    color:hsl(157.8 66.8% 48.9%);
+  }
+  button:hover ::slotted(*) {
+      color: hsl(157.8 66.8% 48.9%);
+  }
+  button:active {
+    background-color: hsl(157.8 66.8% 48.9%);
+    color: black;
+  }
+  button:active ::slotted(*) {
+    color: lack;
+  }
+  `;
+  
+  render() {
+    return html`
+      <button>
+      <slot></slot>
+      </button>
+    `;
+  }
+
 }
